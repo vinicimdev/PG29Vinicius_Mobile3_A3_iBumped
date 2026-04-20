@@ -1,11 +1,44 @@
-# Sample Snack app
+# iBumped
 
-Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
+iBumped is a mobile app for cyclists to check and register the quality of the roads and bike lanes along the streets.
+Using the phone's Accelerometer and GPS hardwares, the app detects bumps and plots them on the map (circles with color-coded indicators), showing where the cyclist had the 'bumpiest' areas.
 
-When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo cli](https://docs.expo.dev/get-started/installation/#expo-cli)).
+## Features
 
-All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
+- Real time accelerometer monitoring the road quality
+- GPS tracking
+- Data persistance with AsyncStorage (local storage) and Firestore (cloud storage)
+- Firebase authentication (with email and password)
+- Map displays the circles with colors indicating the quality of the road
+- Integration with Google Roads API for snapping the location of the bumps to the roads
 
-If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.dev/c/expo-dev-tools/61) or [Discord](https://chat.expo.dev/).
+## Stack
 
-Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
+- Made using React Native + Expo and TypeScript
+- Accelerometer and GPS (expo-location)
+- React native maps
+- Firebase (Authentication + Firestore)
+- Google Roads API
+
+## Screens
+
+For now the app features 3 screens:
+- Login -> User authentication (login/register)
+- Debug -> Sensor values, road quality check, start/stop ride
+- Map -> Bump points visualization with colorized circles
+
+## How to use the App
+
+The user registers and logs in with email and password using Firebase Auth and goes to the Debug Screen.
+On the Debug Screen, the user clicks on Start Ride.
+Every 3 seconds the app checks the accelerometer and classifies it as Good, Rough or Bump.
+When the user ends the ride, the bumps are first stored all locally, then the points are synced and sent to Firestore in a single batch, to avoid overloading the communication with the database.
+The map screen then fetches all points from Firestore and renders the bumps as the colorful circles pinned to the position where the bump happened.
+
+## Setup
+
+This project was built on Expo Snack, so to run it you have to open the Snack URL on your Android device via Expo Go (mobile app).
+
+## Author
+
+Made by PG29 Vinicius, @VFS 2025-2026 All rights reserved.
